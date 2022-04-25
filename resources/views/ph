@@ -1,0 +1,16 @@
+ph
+
+
+php artisan admin:make Academicyear/AcademicController --model=App\Models\Academicyear
+
+php artisan admin:make Academicyear\\AcademiccalendarController --model=App\Models\Academiccalendar
+
+php artisan admin:make Accounts\\TransactionController --model=App\\Models\\Feetransaction
+
+php artisan admin:make Accounts\\ReceivetranController --model=App\\Models\\Receivetran
+
+
+Postalreceive
+
+http://tolldb.com/admin/payment/callback
+http://tertiary.com/purchase-voucher/payment/callback
