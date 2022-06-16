@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::get('/register', [App\Http\Controllers\RegisterController::class, 'register']);
 
+Route::post('/register-user', [App\Http\Controllers\RegisterController::class, 'registeruser']);
 
 Route::post('/user-register/save', [App\Http\Controllers\RegisterController::class, 'saveform']);
 

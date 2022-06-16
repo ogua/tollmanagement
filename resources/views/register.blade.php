@@ -36,7 +36,34 @@
   <div class="login-box-body">
     <p class="login-box-msg">Register</p>
 
-    {!! $form !!}
+    <form action="/register-user" method="post" enctype="multipart/form-data">
+      @csrf
+      <div class="form-group">
+        <label for="">Enter Username</label>
+        <input type="text" name="username" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="">Enter Fullname</label>
+        <input type="text" name="fullname" class="form-control">
+      </div>
+
+      <input type="hidden" value="3" name="tollid">
+
+      <div class="form-group">
+        <label for="">Enter Password</label>
+        <input type="password" name="password" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="">Confirm Password</label>
+        <input type="password" name="password_confirmation" class="form-control">
+      </div>
+
+      <input type="submit" class="btn btn-success" value="Register">
+    </form>
+
+    <a href="/admin">Have Account ? Login</a>
 
   </div>
   <!-- /.login-box-body -->

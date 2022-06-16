@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin_user;
 use App\Models\Tollpoint;
 use Encore\Admin\Controllers\Dashboard;
 use Encore\Admin\Form;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Widgets\Box;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -15,6 +17,8 @@ class RegisterController extends Controller
     public function register()
     {
         
+        return view('register');
+
         $userModel = config('admin.database.users_model');
         $permissionModel = config('admin.database.permissions_model');
         $roleModel = config('admin.database.roles_model');
@@ -93,6 +97,36 @@ class RegisterController extends Controller
         return view(new Box($form));
 
 
+
+    }
+
+
+    public function registeruser(Request $request)
+    {
+       $this->validate($request,[
+        'fullname' => 'required',
+        'password' => 'required|confirmed'
+       ]);
+
+       $fullname = $request->post('fullname');
+       $password = HASH::make($request->post('password'));
+       $tollid = $request->post('tollid');
+       $username = $request->post('username');
+
+       $data = [
+        'name' => $fullname,
+        'password' => $password,
+        'username' => $username,
+       ];
+
+
+       $new = new Admin_user($data);
+       $new->save();
+
+       $new->roles()->sync(['3']);
+
+
+       return redirect()->to('/admin')->with('message','User Registration Successfully!');
 
     }
 
